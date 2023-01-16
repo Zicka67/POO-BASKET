@@ -1,24 +1,63 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="javaScript" href="script.js">
+    <link rel="stylesheet" href="style.css">
 
     <title>Jeu JS</title>
 
 </head>
 
 <body>
-    
- <div id="board"></div>
+
+    <div id="board"></div>
 
 
+    <script>
+        function shuffleChildren(parent) {
+            let children = parent.children
+            let i = children.length, k, temp
+            while (--i > 0) {
+                k = Math.floor(Math.random() * (i + 1))
+                temp = children[k]
+                children[k] = children[i]
+                parent.appendChild(temp)
+            }
+        }
 
+        const box = document.createElement("div")
+        box.classList.add("box")
 
+        const board = document.querySelector("#board")
+
+        //Pour créer une boite avec la class box, jusqu'a ce que i soit égale a 10 (donc 10 boites) et on le met comme enfant de board
+        for (let i = 1; i <= 10; i++) {
+            const newbox = box.cloneNode() // cette ligne crée une nouvelle variable "newbox" et lui affecte la valeur de l'élément "box", qui est cloné.
+            newbox.innerText = i // cette ligne définit le texte intérieur de l'élément "newbox" à la valeur actuelle de "i" pour l'itération actuelle de la boucle.
+            board.appendChild(newbox) // cette ligne ajoute l'élément "newbox" à l'élément "board" en tant qu'enfant.
+
+            newbox.addEventListener("click", function() {
+                console.log("Boite n°" + i + ", click !")
+                newbox.classList.add("box-clicked")
+            })
+        }
+
+        shuffleChildren(board)
+
+        // let i = board.children.length, k, temp // déclare une variable "i" et lui attribue la valeur du nombre d'éléments enfants dans l'élément "board".
+        // while(--i > 0){ //On boucle tant que 1 oté de i est toujours positif
+        //     k = Math.floor(Math.random() * (i+1))// déclare une variable "k" et lui affecte une valeur entière aléatoire entre 0 et "i" (inclus).
+        //     temp = board.children[k] // déclare une variable "temp" et lui affecte la valeur de l'élément enfant à la position "k" dans l'élément "board".
+        //     board.children[k] = board.children[i] //  remplace l'élément enfant à la position "k" dans l'élément "board" par l'élément enfant à la position "i".
+        //     board.appendChild(temp)// ajoute l'élément "temp" à la fin de l'élément "board".
+        // }
+    </script>
+    <!-- <link rel="text/javacript" href="script.js"> -->
 </body>
 
 </html>
